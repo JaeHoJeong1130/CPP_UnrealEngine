@@ -20,4 +20,3 @@
 * UI
 * AI
 
-`Mini C Scanner` is [**Lexical Analyzer**](https://en.wikipedia.org/wiki/Lexical_analysis) to generate tokens of source code to use in parser.
