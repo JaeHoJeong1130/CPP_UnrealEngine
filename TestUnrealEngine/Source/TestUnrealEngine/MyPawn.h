@@ -28,7 +28,6 @@ public:
 
 	// 반드시 인자로 float을 받아줘야함
 	void UpDown(float Value);
-
 	void LeftRight(float Value);
 
 private:
