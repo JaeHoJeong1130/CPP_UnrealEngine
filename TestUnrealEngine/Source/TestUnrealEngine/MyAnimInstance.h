@@ -19,4 +19,7 @@ class TESTUNREALENGINE_API UMyAnimInstance : public UAnimInstance
 private:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Pawn, meta=(AllowPrivateAccess=true))
 	float Speed;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Pawn, meta = (AllowPrivateAccess = true))
+	bool IsFalling;
 };
