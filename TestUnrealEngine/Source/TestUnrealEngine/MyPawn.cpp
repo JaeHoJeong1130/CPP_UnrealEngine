@@ -15,12 +15,12 @@ AMyPawn::AMyPawn()
 
 	RootComponent = Mesh;
 
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> SM(TEXT("StaticMesh'/Game/StarterContent/Props/SM_Couch.SM_Couch'"));
+	//static ConstructorHelpers::FObjectFinder<UStaticMesh> SM(TEXT("StaticMesh'/Game/StarterContent/Props/SM_Couch.SM_Couch'"));
 
-	if (SM.Succeeded())
+	/*if (SM.Succeeded())
 	{
 		Mesh->SetStaticMesh(SM.Object);
-	}
+	}*/
 }
 
 // Called when the game starts or when spawned
