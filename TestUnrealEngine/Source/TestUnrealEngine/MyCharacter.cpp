@@ -7,6 +7,7 @@
 #include "Components/CapsuleComponent.h"
 #include "MyAnimInstance.h"
 #include "DrawDebugHelpers.h"
+#include "MyWeapon.h"
 
 // Sets default values
 AMyCharacter::AMyCharacter()
@@ -33,12 +34,39 @@ AMyCharacter::AMyCharacter()
 		GetMesh()->SetSkeletalMesh(SM.Object);
 	}
 
+	//FName WeaponSocket(TEXT("hand_l_socket"));
+	//if (GetMesh()->DoesSocketExist(WeaponSocket))
+	//{
+	//	// 메시를 만들어줌
+	//	Weapon = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("WEAPON"));
+
+	//	static ConstructorHelpers::FObjectFinder<UStaticMesh> SW(TEXT("StaticMesh'/Game/bone-mace/source/Bone_mace/Dubina.Dubina'"));
+	//	if (SW.Succeeded())
+	//	{
+	//		// 무기가 쥐어지게 됨
+	//		Weapon->SetStaticMesh(SW.Object);
+	//	}
+	//	
+	//	// 무기가 소켓에 붙어있어야 하니깐 붙여줌
+	//	Weapon->SetupAttachment(GetMesh(), WeaponSocket);
+	//}
 }
 
 // Called when the game starts or when spawned
 void AMyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+
+	FName WeaponSocket(TEXT("hand_l_socket"));
+
+	auto CurrentWeapon = GetWorld()->SpawnActor<AMyWeapon>(FVector::ZeroVector, FRotator::ZeroRotator);
+
+	if (CurrentWeapon)
+	{
+		CurrentWeapon->AttachToComponent(GetMesh(),
+			FAttachmentTransformRules::SnapToTargetNotIncludingScale,
+			WeaponSocket);
+	}
 }
 
 void AMyCharacter::PostInitializeComponents()
