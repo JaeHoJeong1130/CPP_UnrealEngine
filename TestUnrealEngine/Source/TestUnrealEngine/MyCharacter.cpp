@@ -26,7 +26,7 @@ AMyCharacter::AMyCharacter()
 	SpringArm->SetupAttachment(GetCapsuleComponent());
 	Camera->SetupAttachment(SpringArm);
 
-	SpringArm->TargetArmLength = 500.f;
+	SpringArm->TargetArmLength = 800.f;
 	SpringArm->SetRelativeRotation(FRotator(-35.f, 0.f, 0.f));
 
 	GetMesh()->SetRelativeLocationAndRotation(
@@ -104,7 +104,13 @@ void AMyCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	int32 HP = Stat->GetHp();
+	if (HP == 0)
+		Destroy();
+
 }
+
+
 
 // Called to bind functionality to input
 void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)

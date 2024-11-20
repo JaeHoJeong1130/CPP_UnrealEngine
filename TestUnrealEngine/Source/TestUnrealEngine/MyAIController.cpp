@@ -56,7 +56,7 @@ void AMyAIController::RandomMove()
 
 	FNavLocation RandomLocation;
 
-	if (NavSystem->GetRandomPointInNavigableRadius(FVector::ZeroVector, 500.f, RandomLocation))
+	if (NavSystem->GetRandomPointInNavigableRadius(FVector::ZeroVector, 100.f, RandomLocation))
 	{
 		UAIBlueprintHelperLibrary::SimpleMoveToLocation(this, RandomLocation);
 	}

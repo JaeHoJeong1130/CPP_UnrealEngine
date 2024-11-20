@@ -24,7 +24,7 @@ protected:
 
 public:
 	void SetLevel(int32 Level);
-	// 무조건 이 함수를 가지만 HP를 설정할 수 있게 해주자
+	// 무조건 이 함수로만 HP를 설정할 수 있게 해주자
 	void SetHp(int32 NewHp);
 	void OnAttacked(float DamageAmount);
 
