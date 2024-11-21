@@ -27,8 +27,6 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	void RemoveCharacter(AActor* CharacterToRemove);
-
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
@@ -61,6 +59,9 @@ private:
 
 	UPROPERTY()
 	int32 AttackIndex = 0;
+
+	UPROPERTY()
+	bool bIsDead = false;
 
 public:
 	UPROPERTY()

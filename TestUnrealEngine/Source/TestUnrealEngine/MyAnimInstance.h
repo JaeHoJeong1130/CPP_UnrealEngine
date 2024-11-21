@@ -22,6 +22,7 @@ public:
 	virtual void NativeUpdateAnimation(float DeltaSeconds) override;
 
 	void PlayAttackMontage();
+	void PlayDeadMontage();
 	void JumpToSection(int32 SectionIndex);
 
 	FName GetAttackMontageName(int32 SectionIndex);
@@ -29,6 +30,9 @@ public:
 private:
 	UFUNCTION()
 	void AnimNotify_AttackHit();
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Pawn, meta = (AllowPrivateAccess = true))
+	bool bIsDead = false;
 
 private:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Pawn, meta=(AllowPrivateAccess=true))
@@ -39,6 +43,9 @@ private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Pawn, meta = (AllowPrivateAccess = true))
 	UAnimMontage* AttackMontage;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Pawn, meta = (AllowPrivateAccess = true))
+	UAnimMontage* DeadMontage;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Pawn, meta = (AllowPrivateAccess = true))
 	float Horizontal;

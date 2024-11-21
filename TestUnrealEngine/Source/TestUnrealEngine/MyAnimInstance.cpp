@@ -13,6 +13,12 @@ UMyAnimInstance::UMyAnimInstance()
 	{
 		AttackMontage = AM.Object;
 	}
+
+	static ConstructorHelpers::FObjectFinder<UAnimMontage> DM(TEXT("AnimMontage'/Game/Animations/Wukong_Dead_Montage.Wukong_Dead_Montage'"));
+	if (DM.Succeeded())
+	{
+		DeadMontage = DM.Object;
+	}
 }
 
 void UMyAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
@@ -40,6 +46,12 @@ void UMyAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 void UMyAnimInstance::PlayAttackMontage()
 {
 	Montage_Play(AttackMontage, 1.f);
+}
+
+void UMyAnimInstance::PlayDeadMontage()
+{
+	//Montage_Play(DeadMontage, 1.f);
+	UE_LOG(LogTemp, Warning, TEXT("Death animation started."));
 }
 
 void UMyAnimInstance::JumpToSection(int32 SectionIndex)

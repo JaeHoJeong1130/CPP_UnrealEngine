@@ -13,6 +13,7 @@
 #include "MyCharacterWidget.h"
 #include "MyAIController.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "TimerManager.h"
 
 // Sets default values
 AMyCharacter::AMyCharacter()
@@ -105,12 +106,16 @@ void AMyCharacter::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	int32 HP = Stat->GetHp();
-	if (HP == 0)
+	
+
+	if (HP == 0 && bIsDead == false)
+	{
+		bIsDead = true;
 		Destroy();
-
+		//AnimInstance->StopAllMontages(0.25f);
+		//AnimInstance->PlayDeadMontage();
+	}
 }
-
-
 
 // Called to bind functionality to input
 void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -166,8 +171,8 @@ void AMyCharacter::AttackCheck()
 	else
 		DrawColor = FColor::Red;
 
-	DrawDebugCapsule(GetWorld(), Center, HalfHeight, AttackRadius,
-		Rotation, DrawColor, false, 2.f);
+	/*DrawDebugCapsule(GetWorld(), Center, HalfHeight, AttackRadius,
+		Rotation, DrawColor, false, 2.f);*/
 
 	if (bResult && HitResult.Actor.IsValid())
 	{
@@ -183,7 +188,6 @@ void AMyCharacter::UpDown(float Value)
 	//UE_LOG(LogTemp, Warning, TEXT("UpDown %f"), Value)
 	UpDownValue = Value;
 	AddMovementInput(GetActorForwardVector(), Value);
-
 }
 
 void AMyCharacter::LeftRight(float Value)
@@ -210,3 +214,6 @@ float AMyCharacter::TakeDamage(float DamageAmount, FDamageEvent const& DamageEve
 
 	return DamageAmount;
 }
+
+
+
